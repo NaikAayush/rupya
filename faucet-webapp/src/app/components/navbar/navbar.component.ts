@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Web3Service } from 'src/app/services/web3/web3.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,11 +6,7 @@ import { Web3Service } from 'src/app/services/web3/web3.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private web3: Web3Service) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  async logout() {
-    await this.web3.logout();
-  }
 }

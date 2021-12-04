@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "site": "faucet-the-rupya",
+    "public": "dist/faucet-webapp",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
