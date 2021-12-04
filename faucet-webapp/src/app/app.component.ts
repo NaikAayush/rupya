@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import Web3 from 'web3';
-declare let window: any;
+import { Web3Service } from './services/web3/web3.service';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +8,14 @@ declare let window: any;
 })
 export class AppComponent {
   title = 'faucet-webapp';
+  isLoggedIn: boolean = false;
 
-  constructor() {
-    this.loadWeb3();
+  constructor(private web3: Web3Service) {
+    this.web3.loadWeb3();
+    this.onInit();
   }
 
-  async loadWeb3() {
-    if (window.ethereum) {
-      await window.ethereum.send('eth_requestAccounts');
-      window.web3 = new Web3(window.ethereum);
-      return true;
-    }
-    return false;
+  async onInit() {
+    this.isLoggedIn = await this.web3.isLoggedIn();
   }
 }
