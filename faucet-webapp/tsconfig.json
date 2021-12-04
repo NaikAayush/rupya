@@ -19,6 +19,8 @@
     "target": "es2017",
     "module": "es2020",
     "lib": ["es2020", "dom"],
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "crypto": ["./node_modules/crypto-browserify"],
       "stream": ["./node_modules/stream-browserify"],
