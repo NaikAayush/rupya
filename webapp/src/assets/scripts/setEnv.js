@@ -43,6 +43,9 @@ const environmentFileContent = `
   export const environment = {
     production: ${isProduction},
     providerURL: '${process.env.providerURL}',
+    ipfsURL: '${process.env.ipfsURL}',
+    ipfsProjectID: '${process.env.ipfsProjectID}',
+    ipfsProjectSecret: '${process.env.ipfsProjectSecret}',
   };
 `;
 

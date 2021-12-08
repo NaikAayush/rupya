@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { AuthModalComponent } from './components/auth/auth-modal/auth-modal.component';
 import { AuthOnboardingComponent } from './components/auth/auth-onboarding/auth-onboarding.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AuthModalComponent,
     AuthOnboardingComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
