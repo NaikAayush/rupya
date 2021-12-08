@@ -5,5 +5,6 @@
     <div *ngFor="let route of routes;" class="flex flex-col w-5/6">
         <app-sidebar-item [routerLink]="route.route" class="w-full h-16 my-2" [name]="route.name" [svg]="route.svg"></app-sidebar-item>
     </div>
+    <p>{{address}}</p>
     <div class="mb-4"></div>
 </div>

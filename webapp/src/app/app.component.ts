@@ -1,13 +1,17 @@
-import { Component } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import Web3 from 'web3';
+import { Component, OnInit } from '@angular/core';
+import { Web3Service } from './services/web3/web3.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'webapp';
-  web3 = new Web3(environment.providerURL);
+  isLoggedIn: boolean = false;
+  constructor(public web3: Web3Service) {}
+
+  async ngOnInit() {
+    this.isLoggedIn = await this.web3.isLoggedIn();
+  }
 }

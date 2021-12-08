@@ -7,6 +7,7 @@ import { SidebarComponent } from './components/sidebar/sidebar/sidebar.component
 import { SidebarItemComponent } from './components/sidebar/sidebar-item/sidebar-item.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AuthModalComponent } from './components/auth/auth-modal/auth-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HeaderComponent } from './components/header/header.component';
     SidebarItemComponent,
     DashboardComponent,
     HeaderComponent,
+    AuthModalComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
