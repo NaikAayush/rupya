@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
   }
 
   async ipfsTest() {
-    const client = this.ipfs.connectToNetwork();
-    const x = await this.ipfs.uploadString(client, 'bb');
-    console.log(x);
+    // const client = this.ipfs.connectToNetwork();
+    // const x = await this.ipfs.uploadString(client, 'bb');
+    // console.log(x);
   }
 }
