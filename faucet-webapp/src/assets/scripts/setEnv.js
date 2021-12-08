@@ -46,6 +46,8 @@ const environmentFileContent = `
     contractAddress: '${process.env.contractAddress}',
     privateKey: '${process.env.privateKey}',
     providerURL: '${process.env.providerURL}',
+    rupyaAddress: '${process.env.rupyaAddress}',
+    usdcAddress: '${process.env.usdcAddress}',
   };
 `;
 
