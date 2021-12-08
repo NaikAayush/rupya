@@ -7,8 +7,9 @@
     </div>
     <div class="w-96">
         <label for="token" class="block text-sm font-medium text-gray-700">Token</label>
-        <select id="token" name="token" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-            <option>Rupya</option>
+        <select id="token" name="token" [(ngModel)]="token" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+            <option value="rupya">Rupya</option>
+            <option value="usdc">USDC</option>
         </select>
     </div>
     <div class="w-96">
