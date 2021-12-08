@@ -32,7 +32,8 @@
   "devDependencies": {
     "@maticnetwork/maticjs": "^2.0.40",
     "@truffle/hdwallet-provider": "^1.4.2",
-    "dotenv": "^9.0.0"
+    "dotenv": "^9.0.0",
+    "@openzeppelin/contracts": "^4.4.0"
   },
   "dependencies": {}
 }
