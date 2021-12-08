@@ -8,6 +8,8 @@ import { SidebarItemComponent } from './components/sidebar/sidebar-item/sidebar-
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthModalComponent } from './components/auth/auth-modal/auth-modal.component';
+import { AuthOnboardingComponent } from './components/auth/auth-onboarding/auth-onboarding.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,9 @@ import { AuthModalComponent } from './components/auth/auth-modal/auth-modal.comp
     DashboardComponent,
     HeaderComponent,
     AuthModalComponent,
+    AuthOnboardingComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

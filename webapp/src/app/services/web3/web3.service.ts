@@ -15,17 +15,23 @@ export class Web3Service {
 
   async isLoggedIn() {
     if (window.ethereum) {
-      const status = await window.ethereum.selectedAddress;
-      if (status != null) {
+      const accounts: Array<string> = await window.ethereum.request({
+        method: 'eth_accounts',
+      });
+      if (accounts.length != 0) {
         return true;
       }
       return false;
+    } else {
+      window.alert(
+        'Non-Ethereum browser detected. You should consider trying MetaMask!'
+      );
+      return false;
     }
-    return false;
   }
 
   async getAccount(): Promise<string> {
-    return await window.ethereum.selectedAddress;
+    return await window.ethereum.request({ method: 'eth_accounts' })[0];
   }
 
   async login() {
@@ -35,10 +41,16 @@ export class Web3Service {
       await window.ethereum.enable();
       window.location.reload();
       this.getAccount();
+    } else {
+      window.alert(
+        'Non-Ethereum browser detected. You should consider trying MetaMask!'
+      );
     }
   }
 
   // async logout() {
+  //   const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+  //   console.log(accounts);
   //   console.log(await window.ethereum.selectedAddress);
   //   if (window.ethereum) {
   //     window.ethereum = null;
