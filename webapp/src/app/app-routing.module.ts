@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthOnboardingComponent } from './components/auth/auth-onboarding/auth-onboarding.component';
+import { BorrowDashboardComponent } from './components/core/borrow/borrow-dashboard/borrow-dashboard.component';
+import { LendDashboardComponent } from './components/core/lend/lend-dashboard/lend-dashboard.component';
+import { StakeDashboardComponent } from './components/core/stake/stake-dashboard/stake-dashboard.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
@@ -8,6 +11,9 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'configure', component: DashboardComponent },
   { path: 'auth/onboarding', component: AuthOnboardingComponent },
+  { path: 'lend', component: LendDashboardComponent },
+  { path: 'borrow', component: BorrowDashboardComponent },
+  { path: 'stake', component: StakeDashboardComponent },
 ];
 
 @NgModule({
