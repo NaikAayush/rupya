@@ -1,0 +1,61 @@
+<div class="flex flex-row w-screen h-screen bg-indigo-50 overflow-auto">
+    <div class="sticky top-0 h-full p-4">
+        <app-sidebar class="h-auto"></app-sidebar>
+    </div>
+
+    <div class="flex flex-row bg-indigo-50 w-5/6 p-6 h-full">
+        <div class="w-full h-full">
+            <app-header title="Lend"></app-header>
+            <main class="flex w-full">
+                <div class="mx-auto px-4 sm:px-6 md:px-8">
+                    <div class="w-full h-full">
+                        <div>
+                            <div>
+                                <dl class="mt-5 grid grid-cols-1 rounded-lg bg-white overflow-hidden shadow divide-y divide-gray-200 md:grid-cols-3 md:divide-y-0 md:divide-x">
+                                    <div class="px-10 py-6">
+                                        <dt class="text-xl font-normal text-gray-900">
+                                            Total Pool Value
+                                        </dt>
+                                        <dd class="mt-4 flex justify-between items-baseline md:block lg:flex">
+                                            <div class="flex items-baseline text-3xl font-semibold text-indigo-600">
+                                                71,897
+                                                <span class="ml-2 text-base font-medium text-gray-500">
+                                                    USD
+                                                </span>
+                                            </div>
+                                        </dd>
+                                    </div>
+                                    <div class="px-10 py-6">
+                                        <dt class="text-xl font-normal text-gray-900">
+                                            Available Pool Value
+                                        </dt>
+                                        <dd class="mt-4 flex justify-between items-baseline md:block lg:flex">
+                                            <div class="flex items-baseline text-3xl font-semibold text-indigo-600">
+                                                20,000
+                                                <span class="ml-2 text-base font-medium text-gray-500">
+                                                    USD
+                                                </span>
+                                            </div>
+                                        </dd>
+                                    </div>
+                                    <div class="px-10 py-6">
+                                        <dt class="text-xl font-normal text-gray-900">
+                                            Liquidity
+                                        </dt>
+                                        <dd class="mt-4 flex justify-between items-baseline md:block lg:flex">
+                                            <div class="flex items-baseline text-3xl font-semibold text-indigo-600">
+                                                24.57%
+                                            </div>
+                                    </div>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <app-lend-pool-item logo="assets/logos/usdc.png" [token]="usdc.contract_ticker_symbol" [address]="usdc.contract_address" [poolValue]="usdc.balance"></app-lend-pool-item>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
