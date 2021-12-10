@@ -18,13 +18,22 @@ export class SidebarItemComponent implements OnInit, OnChanges {
     if (this.active) {
       this.brr = 'bg-theme-primary bg-opacity-10';
     }
+    this.getRoute();
   }
+
   ngOnChanges() {
-    if ('/' + this.name.toLowerCase() == this.router.url) {
-      console.log(this.router.url);
-      this.brr = 'font-semibold bg-indigo-500 bg-opacity-10 text-gray-900';
-    }
-    // console.log(this.name.toLowerCase());
-    // console.log(this.router.url);
+    this.getRoute();
+  }
+
+  getRoute() {
+    this.router.url
+      .split('/')
+      .filter((a) => a)
+      .forEach((element) => {
+        if (this.name.toLowerCase().includes(element) == true) {
+          // console.log(this.name.toLowerCase(), element);
+          this.brr = 'font-semibold bg-indigo-500 bg-opacity-10 text-gray-900';
+        }
+      });
   }
 }
