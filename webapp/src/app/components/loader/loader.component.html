@@ -3,3 +3,5 @@
         <div style="border-top-color:transparent" class="w-16 h-16 border-8 border-indigo-600 border-solid rounded-full animate-spin"></div>
     </div>
 </div>
+
+<app-toast *ngIf="delay" title="Delay" body="If page still hasn't loaded, kindly reload. This might be due to heavy traffic on Covalent API server for Matic Mumbai."></app-toast>
