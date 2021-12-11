@@ -1,0 +1,7 @@
+<div class="w-full h-full fixed block top-0 left-0 bg-white opacity-75 z-50">
+    <div class="opacity-75 top-1/2 my-0 mx-auto block relative w-0 h-0 z-20">
+        <div style="border-top-color:transparent" class="w-16 h-16 border-8 border-indigo-600 border-solid rounded-full animate-spin"></div>
+    </div>
+</div>
+
+<app-toast *ngIf="delay" title="Delay" body="If page still hasn't loaded, kindly reload. This might be due to heavy traffic on Covalent API server for Matic Mumbai."></app-toast>

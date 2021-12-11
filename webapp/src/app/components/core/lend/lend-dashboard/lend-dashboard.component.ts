@@ -8,11 +8,15 @@ import { CovalentService } from 'src/app/services/covalent/covalent.service';
 })
 export class LendDashboardComponent implements OnInit {
   usdc: any;
+  loading: boolean = true;
   constructor(private covalent: CovalentService) {}
 
   async ngOnInit() {
-    console.log('s');
-    this.usdc = await this.covalent.getUSDCTokenBalance();
-    console.log(this.usdc);
+    // this.usdc = await this.covalent.getUSDCTokenBalance();
+    // console.log(this.usdc);
+    this.loading = false;
+    // this.loadPools();
   }
+
+  async loadPools() {}
 }
