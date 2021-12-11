@@ -15,12 +15,5 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     // await this.web3.login();
     this.isLoggedIn = await this.web3.isLoggedIn();
-    await this.ipfsTest();
-  }
-
-  async ipfsTest() {
-    // const client = this.ipfs.connectToNetwork();
-    // const x = await this.ipfs.uploadString(client, 'bb');
-    // console.log(x);
   }
 }

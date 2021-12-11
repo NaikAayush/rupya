@@ -16,6 +16,7 @@ import { StakeDashboardComponent } from './components/core/stake/stake-dashboard
 import { BorrowDashboardComponent } from './components/core/borrow/borrow-dashboard/borrow-dashboard.component';
 import { LendPoolItemComponent } from './components/core/lend/lend-pool-item/lend-pool-item.component';
 import { BorrowRequestComponent } from './components/core/borrow/borrow-request/borrow-request.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BorrowRequestComponent } from './components/core/borrow/borrow-request/
     BorrowDashboardComponent,
     LendPoolItemComponent,
     BorrowRequestComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
