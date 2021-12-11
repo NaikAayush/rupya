@@ -35,5 +35,7 @@
     "dotenv": "^9.0.0",
     "@openzeppelin/contracts": "^4.4.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@superfluid-finance/ethereum-contracts": "^1.0.0-rc.8"
+  }
 }
