@@ -17,6 +17,7 @@ import { BorrowDashboardComponent } from './components/core/borrow/borrow-dashbo
 import { LendPoolItemComponent } from './components/core/lend/lend-pool-item/lend-pool-item.component';
 import { BorrowRequestComponent } from './components/core/borrow/borrow-request/borrow-request.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     LendPoolItemComponent,
     BorrowRequestComponent,
     LoaderComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

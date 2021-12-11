@@ -12,10 +12,10 @@ export class LendDashboardComponent implements OnInit {
   constructor(private covalent: CovalentService) {}
 
   async ngOnInit() {
-    this.usdc = await this.covalent.getUSDCTokenBalance();
-    console.log(this.usdc);
+    // this.usdc = await this.covalent.getUSDCTokenBalance();
+    // console.log(this.usdc);
     this.loading = false;
-    this.loadPools();
+    // this.loadPools();
   }
 
   async loadPools() {}

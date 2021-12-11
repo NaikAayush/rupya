@@ -11,7 +11,16 @@ export class LendPoolItemComponent implements OnInit {
   @Input() poolValue: string = '';
   @Input() interest: string = '';
   @Input() logo: string = '';
+  enabled: boolean = false;
+
   constructor() {}
 
   ngOnInit(): void {}
+  showMenu() {
+    if (this.enabled) {
+      this.enabled = false;
+    } else {
+      this.enabled = true;
+    }
+  }
 }
