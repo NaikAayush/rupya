@@ -18,6 +18,8 @@ import { LendPoolItemComponent } from './components/core/lend/lend-pool-item/len
 import { BorrowRequestComponent } from './components/core/borrow/borrow-request/borrow-request.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { StakeLoansComponent } from './components/core/stake/stake-loans/stake-loans.component';
+import { StakeLoansItemComponent } from './components/core/stake/stake-loans-item/stake-loans-item.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ToastComponent } from './components/toast/toast.component';
     BorrowRequestComponent,
     LoaderComponent,
     ToastComponent,
+    StakeLoansComponent,
+    StakeLoansItemComponent,
   ],
   imports: [
     BrowserModule,
