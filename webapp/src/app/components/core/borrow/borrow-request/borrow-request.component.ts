@@ -12,6 +12,7 @@ export class BorrowRequestComponent implements OnInit, DoCheck {
   agriButton: string =
     'bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
   agriToggle: string = 'translate-x-0';
+  submitStatus: boolean = false;
 
   loanForm = new FormGroup({
     loanAmount: new FormControl(''),
@@ -46,6 +47,15 @@ export class BorrowRequestComponent implements OnInit, DoCheck {
   ngDoCheck() {}
 
   onSubmit() {
+    this.submitStatus = true;
     console.log(this.loanForm.value);
+  }
+
+  onFinalSubmit() {
+    console.log(this.loanForm.value);
+  }
+
+  onCancel() {
+    this.submitStatus = false;
   }
 }
