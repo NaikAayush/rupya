@@ -15,4 +15,13 @@ export class CovalentService {
       .toPromise();
     return result.data.items[0];
   }
+
+  async getEvent() {
+    const result: any = await this.http
+      .get(
+        'https://api.covalenthq.com/v1/80001/events/address/0x8FAd3Ccc1573Db9F8b021842DA662C5f872cC420/?quote-currency=USD&format=JSON&starting-block=22514105&ending-block=latest&key=ckey_docs'
+      )
+      .toPromise();
+    return result.data.items[0];
+  }
 }
