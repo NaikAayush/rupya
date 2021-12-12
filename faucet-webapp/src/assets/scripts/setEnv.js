@@ -48,6 +48,7 @@ const environmentFileContent = `
     providerURL: '${process.env.providerURL}',
     rupyaAddress: '${process.env.rupyaAddress}',
     usdcAddress: '${process.env.usdcAddress}',
+    url: '${process.env.url}',
   };
 `;
 

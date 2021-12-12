@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FaucetService } from 'src/app/services/faucet/faucet.service';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-faucet',
@@ -9,9 +10,15 @@ import { FaucetService } from 'src/app/services/faucet/faucet.service';
 export class FaucetComponent implements OnInit {
   address: string = '';
   token: string = 'rupya';
-  constructor(private faucet: FaucetService) {}
+  constructor(
+    private faucet: FaucetService,
+    private tokenService: TokenService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.addToken();
+    // this.tokenService.addToken('rupya');
+  }
 
   getToken() {
     this.faucet.getToken(this.address, this.token);

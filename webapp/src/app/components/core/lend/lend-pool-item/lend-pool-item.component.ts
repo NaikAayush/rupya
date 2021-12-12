@@ -11,6 +11,7 @@ export class LendPoolItemComponent implements OnInit {
   @Input() poolValue: string = '';
   @Input() interest: string = '';
   @Input() logo: string = '';
+  @Input() bal: string = '';
   enabled: boolean = false;
 
   constructor() {}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { UserService } from 'src/app/services/core/user/user.service';
 import { IpfsService } from 'src/app/services/ipfs/ipfs.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class AuthOnboardingComponent implements OnInit {
   stage1: boolean = true;
   stage2: boolean = false;
 
-  constructor(private ipfs: IpfsService) {}
+  constructor(private ipfs: IpfsService, private user: UserService) {}
 
   profileForm = new FormGroup({
     firstName: new FormControl(''),
@@ -45,6 +46,7 @@ export class AuthOnboardingComponent implements OnInit {
   async onSubmitStage2() {
     const client = this.ipfs.connectToNetwork();
     console.log(this.kycForm.value);
+
     const result = await this.ipfs.uploadString(
       client,
       JSON.stringify({
@@ -52,6 +54,8 @@ export class AuthOnboardingComponent implements OnInit {
         kyc: this.kycForm.value,
       })
     );
-    console.log(result);
+
+    console.log(result.path);
+    await this.user.createUser(result.path);
   }
 }

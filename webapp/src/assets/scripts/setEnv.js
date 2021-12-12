@@ -48,6 +48,9 @@ const environmentFileContent = `
     ipfsProjectSecret: '${process.env.ipfsProjectSecret}',
     usdcPoolAddress: '${process.env.usdcPoolAddress}',
     covalentAPIKey: '${process.env.covalentAPIKey}',
+    userContractAddress: '${process.env.userContractAddress}',
+    usdcTokenAddress: '${process.env.usdcTokenAddress}',
+    lendContractAddress: '${process.env.lendContractAddress}',
   };
 `;
 

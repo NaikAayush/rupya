@@ -12,14 +12,16 @@ export class Web3Service {
 
   address: any;
   constructor() {
-    this.web3 = new Web3();
+    this.web3 = new Web3(window.ethereum);
   }
 
   async isLoggedIn() {
     if (window.ethereum) {
+      // console.log('w.eth');
       const accounts: Array<string> = await window.ethereum.request({
         method: 'eth_accounts',
       });
+      // console.log(accounts);
       if (accounts.length != 0) {
         return true;
       }
@@ -33,7 +35,7 @@ export class Web3Service {
   }
 
   async getAccount(): Promise<string> {
-    return await window.ethereum.request({ method: 'eth_accounts' })[0];
+    return await window.ethereum.request({ method: 'eth_accounts' });
   }
 
   async login() {
