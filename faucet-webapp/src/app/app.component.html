@@ -1,8 +1,23 @@
 <div class="bg-gray-100 h-screen">
     <app-navbar></app-navbar>
-    <!-- <app-wallet-connect *ngIf="!isLoggedIn"></app-wallet-connect> -->
     <div class="flex flex-col justify-center items-center p-8">
         <app-faucet class="bg-white p-10 rounded-md border-gray-200"></app-faucet>
+
+    </div>
+
+    <div class="flex flex-row justify-center w-full items-center gap-8">
+        <button (click)="addRupya()" class="flex flex-row justify-center p-8 items-center bg-white  shadow rounded-lg overflow-hidden">
+            <img class="h-10" src="assets/rup.png" alt="">
+            <p class="p-4 text-2xl font-semibold text-gray-900">
+                Add Rupya to Metamask
+            </p>
+        </button>
+        <button (click)="addUSDC()" class="flex flex-row justify-center p-8 items-center bg-white  shadow rounded-lg overflow-hidden">
+            <img class="h-10" src="assets/usdc.png" alt="">
+            <p class="p-4 text-2xl font-semibold text-gray-900">
+                Add USDC to Metamask
+            </p>
+        </button>
     </div>
 </div>
 

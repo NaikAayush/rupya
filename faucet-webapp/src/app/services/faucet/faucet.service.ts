@@ -38,11 +38,11 @@ export class FaucetService {
     var data: any;
     if (token == 'rupya') {
       tokenAddress = this.rupyaAddress;
-      data = this.rupyaToken.methods.faucet(address, 100).encodeABI();
+      data = this.rupyaToken.methods.faucet(address, 1000).encodeABI();
     }
     if (token == 'usdc') {
       tokenAddress = this.usdcAddress;
-      data = this.usdcToken.methods.faucet(address, 100).encodeABI();
+      data = this.usdcToken.methods.faucet(address, 1000).encodeABI();
     }
     const transaction = await this.web3.eth.accounts.signTransaction(
       {
