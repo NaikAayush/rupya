@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/core/user/user.service';
 import { Web3Service } from 'src/app/services/web3/web3.service';
 import { RoutesArray } from '../../../models/routes-array.model';
 
@@ -10,6 +11,7 @@ import { RoutesArray } from '../../../models/routes-array.model';
 export class SidebarComponent implements OnInit {
   route: string = '';
   address: string = '';
+  ipfsHash: string = '';
 
   public routes: Array<RoutesArray> = [
     {
@@ -32,12 +34,20 @@ export class SidebarComponent implements OnInit {
       route: '/stake',
       svg: 'M9 8h6m-5 0a3 3 0 110 6H9l3 3m-3-6h6m6 1a9 9 0 11-18 0 9 9 0 0118 0z',
     },
+    {
+      name: 'Profile',
+      route: '/profile/onboarding',
+      svg: 'M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+    },
   ];
-  constructor(private web3: Web3Service) {}
+  constructor(private web3: Web3Service, private user: UserService) {}
 
   async ngOnInit() {
     this.address = await this.web3.getAccount();
     console.log(this.address);
+    await this.user.init();
+    this.ipfsHash = this.user.ipfsHash;
+    console.log(this.ipfsHash);
     // console.log(this.router.url);
   }
 }

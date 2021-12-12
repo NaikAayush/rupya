@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'configure', component: DashboardComponent },
-  { path: 'auth/onboarding', component: AuthOnboardingComponent },
+  { path: 'profile/onboarding', component: AuthOnboardingComponent },
   { path: 'lend', component: LendDashboardComponent },
   { path: 'borrow', component: BorrowDashboardComponent },
   { path: 'borrow/new', component: BorrowRequestComponent },
