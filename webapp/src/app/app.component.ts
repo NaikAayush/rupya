@@ -14,9 +14,9 @@ export class AppComponent implements OnInit {
   isLoggedIn: boolean = false;
   constructor(
     public web3: Web3Service,
-    private ipfs: IpfsService,
-    private lend: LendService // private superfluid: SuperfluidService
-  ) {}
+    private ipfs: IpfsService
+  ) // private lend: LendService // private superfluid: SuperfluidService
+  {}
 
   async ngOnInit() {
     // await this.web3.login();

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LendService } from 'src/app/services/core/lend/lend.service';
 import { CovalentService } from 'src/app/services/covalent/covalent.service';
 
 @Component({
@@ -9,12 +10,14 @@ import { CovalentService } from 'src/app/services/covalent/covalent.service';
 export class LendDashboardComponent implements OnInit {
   usdc: any;
   loading: boolean = true;
-  constructor(private covalent: CovalentService) {}
+  usdcBalance: any;
+  constructor(private covalent: CovalentService, private lend: LendService) {}
 
   async ngOnInit() {
     // this.usdc = await this.covalent.getUSDCTokenBalance();
     // console.log(this.usdc);
     this.loading = false;
+    this.usdcBalance = await this.lend.getUSDCBal();
     // this.loadPools();
   }
 
