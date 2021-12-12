@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import User from '../../../../assets/abis/User.json';
-import Web3 from 'web3';
 import { Web3Service } from '../../web3/web3.service';
 
 @Injectable({
