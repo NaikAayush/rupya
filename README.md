@@ -43,3 +43,11 @@ Rupya is an Unsecured/Zero collateral lending platform, which is tapping into bo
 ⛓ **Chainlink** - Price feeds for calculating interest earned in staking RUP (tied to USDC on test net), VRF for loan contracts.
 
 🌊 **Superfluid** - To stream interest earned by lenders and to regularly pay back loans by borrowers.
+
+## Screenshots
+
+![](/screenshots/1_cover.png)
+![](/screenshots/2_lend.png)
+![](/screenshots/3_stake.png)
+![](/screenshots/4_faucet.png)
+![](/screenshots/5_borrow.png)
