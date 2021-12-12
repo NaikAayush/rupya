@@ -112,7 +112,7 @@ contract Lend is ChainlinkClient, Ownable {
     }
 
     function issueTokens() public onlyOwner {
-        // Issue tokens to all stakers
+        // Issue tokens to all lenders
         for (
             uint256 lendersIndex = 0;
             lendersIndex < lenders.length;
