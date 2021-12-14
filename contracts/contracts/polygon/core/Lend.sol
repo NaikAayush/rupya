@@ -41,12 +41,19 @@ contract Lend is ChainlinkClient, Ownable {
         }
     }
 
-    function withdrawTokens(address token) public {
+    function withdrawTokens(uint256 _amount, address token) public {
         uint256 balance = lendingBalance[token][msg.sender];
-        require(balance > 0, "staking balance cannot be 0");
-        IERC20(token).transfer(msg.sender, balance);
-        lendingBalance[token][msg.sender] = 0;
-        uniqueTokensLent[msg.sender] = uniqueTokensLent[msg.sender] - 1;
+        require(balance > 0, "lending balance cannot be 0");
+        require(balance > _amount, "withdrawal balance cannot be less than lending balance");
+        IERC20(token).transfer(msg.sender, _amount);
+        lendingBalance[token][msg.sender] = balance - _amount;
+        if(lendingBalance[token][msg.sender] == 0){
+            uniqueTokensLent[msg.sender] = uniqueTokensLent[msg.sender] - 1;
+        }
+    }
+
+    function getUserTokenValue(address user, address token) public view returns (uint256) {
+        return lendingBalance[token][user];
     }
 
     function getUserTotalValue(address user) public view returns (uint256) {
