@@ -14,11 +14,8 @@ export class LendDashboardComponent implements OnInit {
   constructor(private covalent: CovalentService, private lend: LendService) {}
 
   async ngOnInit() {
-    // this.usdc = await this.covalent.getUSDCTokenBalance();
-    // console.log(this.usdc);
     this.loading = false;
-    this.usdcBalance = await this.lend.getUSDCBal();
-    // this.loadPools();
+    this.usdcBalance = Math.floor(await this.lend.getUSDCBal());
   }
 
   async loadPools() {}

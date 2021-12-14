@@ -36,7 +36,6 @@ export class LendService {
   }
 
   async lend(amount: string) {
-    // const amount = '50';
     const account = await this.web3.getAccount();
     console.log(this.web3.web3.utils.toWei(amount));
     this.usdcContract.methods
@@ -47,9 +46,18 @@ export class LendService {
           .lendTokens(this.web3.web3.utils.toWei(amount), this.usdcTokenAddress)
           .send({ from: account[0] })
           .on('transactionHash', (hash: any) => {
-            // this.setState({ loading: false });
             console.log(hash);
           });
+      });
+  }
+
+  async withdraw(amount: string) {
+    const account = await this.web3.getAccount();
+    this.lendContract.methods
+      .withdrawTokens(this.web3.web3.utils.toWei(amount), this.usdcTokenAddress)
+      .send({ from: account[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(hash);
       });
   }
 
@@ -64,6 +72,18 @@ export class LendService {
 
   async amountLent() {
     const account = await this.web3.getAccount();
-    // this.lendContractAddress.methods.
+    return this.web3.web3.utils.fromWei(
+      await this.lendContract.methods
+        .getUserTokenValue(account[0], this.usdcTokenAddress)
+        .call()
+    );
+  }
+
+  async getPoolValue() {
+    const account = await this.web3.getAccount();
+    this.usdcBal = this.web3.web3.utils.fromWei(
+      await this.usdcContract.methods.balanceOf(this.lendContractAddress).call()
+    );
+    return this.usdcBal;
   }
 }
