@@ -20,3 +20,6 @@
         <span>Receive Token</span>
     </button>
 </div>
+
+<app-loader *ngIf="loading"></app-loader>
+<app-toast *ngIf="toast" title="Successful" body="You have received testnet tokens."></app-toast>

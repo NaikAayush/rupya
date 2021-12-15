@@ -10,18 +10,19 @@ import { TokenService } from 'src/app/services/token/token.service';
 export class FaucetComponent implements OnInit {
   address: string = '';
   token: string = 'rupya';
+  loading = false;
+  toast = false;
   constructor(
     private faucet: FaucetService,
     private tokenService: TokenService
   ) {}
 
-  ngOnInit(): void {
-    // this.addToken();
-    // this.tokenService.addToken('rupya');
-  }
+  ngOnInit(): void {}
 
-  getToken() {
-    this.faucet.getToken(this.address, this.token);
-    // console.log(this.token);
+  async getToken() {
+    this.loading = true;
+    await this.faucet.getToken(this.address, this.token);
+    this.loading = false;
+    this.toast = true;
   }
 }

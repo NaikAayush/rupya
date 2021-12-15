@@ -10,16 +10,13 @@ import { TokenService } from './services/token/token.service';
 export class AppComponent {
   title = 'faucet-webapp';
   isLoggedIn: boolean = false;
+  loading = false;
 
-  constructor(private faucet: FaucetService, private token: TokenService) {
-    this.faucet.init();
-    // this.web3.loadWeb3();
-    // this.onInit();
+  constructor(private faucet: FaucetService, private token: TokenService) {}
+  async addUSDC() {
+    await this.token.addToken('usdc');
   }
-  addUSDC() {
-    this.token.addToken('usdc');
-  }
-  addRupya() {
-    this.token.addToken('rupya');
+  async addRupya() {
+    await this.token.addToken('rupya');
   }
 }

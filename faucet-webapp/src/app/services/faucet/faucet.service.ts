@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import Web3 from 'web3';
 import USDCToken from '../../../assets/abis/USDCToken.json';
 import RupyaToken from '../../../assets/abis/RupyaToken.json';
+import { ethers, Wallet } from 'ethers';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FaucetService {
   web3: any;
+  provider: ethers.providers.JsonRpcProvider;
+  signer: any;
+  wallet: ethers.Wallet;
   faucetAddress: string = environment.faucetAddress;
   rupyaToken: any;
   usdcToken: any;
@@ -16,53 +19,35 @@ export class FaucetService {
   usdcAddress: string = environment.usdcAddress;
   privateKey: string = environment.privateKey;
 
-  constructor() {}
-
-  async init() {
-    this.web3 = new Web3(environment.providerURL);
-
-    this.rupyaToken = new this.web3.eth.Contract(
-      RupyaToken.abi as any,
-      this.rupyaAddress,
-      { from: environment.faucetAddress }
+  constructor() {
+    this.provider = new ethers.providers.JsonRpcProvider(
+      environment.providerURL
     );
-    this.usdcToken = new this.web3.eth.Contract(
-      USDCToken.abi as any,
-      this.usdcAddress,
-      { from: environment.faucetAddress }
-    );
+    this.wallet = new Wallet(this.privateKey, this.provider);
   }
 
   async getToken(address: string, token: string) {
     var tokenAddress = '';
     var data: any;
     if (token == 'rupya') {
+      const iFace = new ethers.utils.Interface(RupyaToken.abi);
+      data = iFace.encodeFunctionData('faucet', [address, 1000]);
       tokenAddress = this.rupyaAddress;
-      data = this.rupyaToken.methods.faucet(address, 1000).encodeABI();
     }
     if (token == 'usdc') {
       tokenAddress = this.usdcAddress;
-      data = this.usdcToken.methods.faucet(address, 1000).encodeABI();
+      const iFace = new ethers.utils.Interface(USDCToken.abi);
+      data = iFace.encodeFunctionData('faucet', [address, 1000]);
     }
-    const transaction = await this.web3.eth.accounts.signTransaction(
-      {
-        from: this.faucetAddress,
-        to: tokenAddress,
-        gas: 220000,
-        nonce: await this.web3.eth.getTransactionCount(
-          this.faucetAddress,
-          'pending'
-        ),
-        data: data,
-      },
-      this.privateKey
-    );
-
-    const resultTx = await this.web3.eth.sendSignedTransaction(
-      transaction.rawTransaction
-    );
-
-    console.log(resultTx);
-    return resultTx;
+    await this.wallet.sendTransaction({
+      from: this.faucetAddress,
+      to: tokenAddress,
+      gasLimit: 220000,
+      nonce: await this.provider.getTransactionCount(
+        this.faucetAddress,
+        'latest'
+      ),
+      data: data,
+    });
   }
 }
