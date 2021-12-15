@@ -1,5 +1,6 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { LendBorrowService } from 'src/app/services/core/lend-borrow/lend-borrow.service';
 import { IpfsService } from 'src/app/services/ipfs/ipfs.service';
 
 @Component({
@@ -15,16 +16,19 @@ export class BorrowRequestComponent implements OnInit, DoCheck {
   submitStatus: boolean = false;
 
   loanForm = new FormGroup({
-    loanAmount: new FormControl(''),
-    loanCurrency: new FormControl('USD'),
-    termValue: new FormControl(''),
-    termType: new FormControl('Weeks'),
+    loanAmount: new FormControl(0),
+    loanCurrency: new FormControl('USDC'),
+    termValue: new FormControl(0),
+    termType: new FormControl('Days'),
     loanDescription: new FormControl(''),
     agriLoan: new FormControl(this.toggleStatus),
     agriLoanType: new FormControl(''),
   });
 
-  constructor(private ipfs: IpfsService) {}
+  constructor(
+    private ipfs: IpfsService,
+    private lendBorrowService: LendBorrowService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -51,8 +55,20 @@ export class BorrowRequestComponent implements OnInit, DoCheck {
     console.log(this.loanForm.value);
   }
 
-  onFinalSubmit() {
+  async onFinalSubmit() {
     console.log(this.loanForm.value);
+    const client = this.ipfs.connectToNetwork();
+    const result = await this.ipfs.uploadString(
+      client,
+      JSON.stringify(this.loanForm.value)
+    );
+    console.log(result.path);
+    this.submitStatus = false;
+    this.lendBorrowService.createBorrowRequest(
+      this.loanForm.value.loanAmount,
+      this.loanForm.value.termValue,
+      result.path
+    );
   }
 
   onCancel() {

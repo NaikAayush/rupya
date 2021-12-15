@@ -1,3 +1,4 @@
+<app-loader *ngIf="loading"></app-loader>
 <div class="flex flex-row w-screen h-screen bg-indigo-50 overflow-auto">
     <div class="sticky top-0 h-full p-4">
         <app-sidebar class="h-auto"></app-sidebar>
@@ -15,6 +16,21 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </button>
+                        <button (click)="pay()" type="button" class="inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Repay
+                            <svg class="ml-3 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                        <div class="min-w-full shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                            <table class="divide-y divide-gray-200">
+                                <tbody class="min-w-full">
+                                    <tr *ngFor="let item of data;">
+                                        <app-stake-loans-item [user]="item[0]" [idx]="item[1]" [ipfs]="item[2]"></app-stake-loans-item>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </main>

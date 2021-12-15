@@ -9,9 +9,5 @@ export class LoaderComponent implements OnInit {
   delay: boolean = false;
   constructor() {}
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.delay = true;
-    }, 20000);
-  }
+  ngOnInit() {}
 }

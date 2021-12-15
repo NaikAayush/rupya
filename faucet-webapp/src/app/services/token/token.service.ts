@@ -16,6 +16,16 @@ export class TokenService {
   usdcDecimals = 18;
   usdcImage = environment.url + '/assets/usdc.png';
 
+  rupyaxAddress = environment.rupx;
+  rupyaxSymbol = 'RUPx';
+  rupyaxDecimals = 18;
+  rupyaxImage = environment.url + '/assets/rup.png';
+
+  usdcxAddress = environment.usdcx;
+  usdcxSymbol = 'USDCx';
+  usdcxDecimals = 18;
+  usdcxImage = environment.url + '/assets/usdc.png';
+
   options: any;
 
   constructor() {}
@@ -35,6 +45,21 @@ export class TokenService {
         symbol: this.usdcSymbol,
         decimals: this.usdcDecimals,
         image: this.usdcImage,
+      };
+    }
+    if (token == 'rupyax') {
+      this.options = {
+        address: this.rupyaxAddress,
+        symbol: this.rupyaxSymbol,
+        decimals: this.rupyaxDecimals,
+        image: this.rupyaxImage,
+      };
+    } else if (token == 'usdcx') {
+      this.options = {
+        address: this.usdcxAddress,
+        symbol: this.usdcxSymbol,
+        decimals: this.usdcxDecimals,
+        image: this.usdcxImage,
       };
     }
     try {

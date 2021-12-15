@@ -5,7 +5,7 @@ import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Lend is ChainlinkClient, Ownable {
+contract LendBorrow is ChainlinkClient, Ownable {
     address[] public lenders;
 
     mapping(address => mapping(address => uint256)) public lendingBalance;
@@ -14,9 +14,15 @@ contract Lend is ChainlinkClient, Ownable {
     address[] allowedTokens;
 
     IERC20 public rupyaToken;
+    IERC20 public usdcToken;
+    address usdcTokenAddress;
+    address rupyaTokenAddress;
 
-    constructor(address _rupyaTokenAddress) {
+    constructor(address _rupyaTokenAddress, address _usdcTokenAddress) {
         rupyaToken = IERC20(_rupyaTokenAddress);
+        usdcToken = IERC20(_usdcTokenAddress);
+        rupyaTokenAddress = _rupyaTokenAddress;
+        usdcTokenAddress = _usdcTokenAddress;
     }
 
     function addAllowedTokens(address token) public onlyOwner {
@@ -128,5 +134,61 @@ contract Lend is ChainlinkClient, Ownable {
             address recipient = lenders[lendersIndex];
             rupyaToken.transfer(recipient, getUserTotalValue(recipient));
         }
+    }
+
+    // mapping(address => )
+    address[] userAddress;
+    uint256[] userAmount;
+    uint256[] borrowDuration;
+    bool[] claimed;
+    mapping(address => uint256[]) public entriesForUser;
+
+    struct Loan{
+        address token;
+        uint256 principal;
+        uint256 totalAmount;
+        uint256 duration;
+        uint256 noOfApprovals;
+        bool repaid;
+        bool approved;
+        string ipfsHash;
+    }
+
+    mapping(address => Loan[]) userToLoanMapper;
+    mapping(address => uint256[]) userLoanIndexMapper;
+
+    event newLoanRequest(address user, uint256 index, string ipfsHash);
+
+
+    function createBorrowRequest(uint256 principal, uint256 duration, address token, uint256 totalAmount, string memory ipfsHash) public {
+        Loan memory newLoan = Loan(
+            token,
+            principal,
+            totalAmount,
+            duration,
+            0,
+            false,
+            false,
+            ipfsHash
+        );
+        userToLoanMapper[msg.sender].push(newLoan);
+        userLoanIndexMapper[msg.sender].push(userToLoanMapper[msg.sender].length - 1);
+        emit newLoanRequest(msg.sender, userToLoanMapper[msg.sender].length - 1, ipfsHash);
+    }
+
+    function approveBorrowRequest(address user, uint256 index) public {
+        userToLoanMapper[user][index].noOfApprovals = userToLoanMapper[user][index].noOfApprovals + 1;
+        if(userToLoanMapper[user][index].noOfApprovals == 2){
+            userToLoanMapper[user][index].approved = true;
+        }
+    }
+
+    function getApprovalStatus(uint256 index) public view returns(bool) {
+        return userToLoanMapper[msg.sender][index].approved;
+    }
+
+    function lendMoney(uint256 index) public {
+        require(userToLoanMapper[msg.sender][index].approved == true);
+        usdcToken.transfer(msg.sender, userToLoanMapper[msg.sender][index].principal);
     }
 }

@@ -51,6 +51,9 @@ const environmentFileContent = `
     userContractAddress: '${process.env.userContractAddress}',
     usdcTokenAddress: '${process.env.usdcTokenAddress}',
     lendContractAddress: '${process.env.lendContractAddress}',
+    stakeContractAddress: '${process.env.stakeContractAddress}',
+    rupyaContractAddress: '${process.env.rupyaContractAddress}',
+    lendBorrowContractAddress: '${process.env.lendBorrowContractAddress}',
   };
 `;
 
