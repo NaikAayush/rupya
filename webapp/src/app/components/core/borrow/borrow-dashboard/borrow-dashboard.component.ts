@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CovalentService } from 'src/app/services/covalent/covalent.service';
 import { EthersService } from 'src/app/services/ethers/ethers.service';
+import { SuperfluidService } from 'src/app/services/superfluid/superfluid.service';
 
 @Component({
   selector: 'app-borrow-dashboard',
@@ -13,7 +14,8 @@ export class BorrowDashboardComponent implements OnInit {
   loading = true;
   constructor(
     private covalent: CovalentService,
-    private ethersService: EthersService
+    private ethersService: EthersService,
+    private sf: SuperfluidService
   ) {}
 
   async ngOnInit() {
@@ -34,5 +36,9 @@ export class BorrowDashboardComponent implements OnInit {
     });
     console.log(this.data);
     this.loading = false;
+  }
+
+  async pay() {
+    this.sf.init();
   }
 }
