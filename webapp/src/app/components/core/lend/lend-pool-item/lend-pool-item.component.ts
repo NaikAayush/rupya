@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { LendBorrowService } from 'src/app/services/core/lend-borrow/lend-borrow.service';
 import { LendService } from 'src/app/services/core/lend/lend.service';
 
 @Component({
@@ -9,21 +10,22 @@ import { LendService } from 'src/app/services/core/lend/lend.service';
 export class LendPoolItemComponent implements OnInit {
   @Input() token: string = '';
   @Input() address: string = '';
-  @Input() poolValue: string = '';
+  @Input() poolValue: number = 0;
   @Input() interest: string = '';
   @Input() logo: string = '';
-  @Input() bal: string = '';
+  @Input() bal: number = 0;
   lendAmount = '';
   enabled: boolean = false;
-  usdcLentBal: any;
+  usdcLentBal: number = 0;
   loading = true;
   withdrawAmount = '';
 
-  constructor(private lendService: LendService) {}
+  constructor(private lendBorrowService: LendBorrowService) {}
 
   async ngOnInit() {
-    this.usdcLentBal = await this.lendService.amountLent();
-    this.poolValue = await this.lendService.getPoolValue();
+    this.bal = await this.lendBorrowService.getUSDCBal();
+    this.usdcLentBal = await this.lendBorrowService.amountLent();
+    this.poolValue = await this.lendBorrowService.getPoolValue();
     this.loading = false;
   }
   showMenu() {
@@ -35,10 +37,16 @@ export class LendPoolItemComponent implements OnInit {
   }
 
   async lend() {
-    this.lendService.lend(this.lendAmount);
+    this.loading = true;
+    await this.lendBorrowService.lend(this.lendAmount);
+    this.ngOnInit();
+    this.loading = false;
   }
 
   async withdraw() {
-    this.lendService.withdraw(this.withdrawAmount);
+    this.loading = true;
+    await this.lendBorrowService.withdraw(this.withdrawAmount);
+    this.ngOnInit();
+    this.loading = false;
   }
 }

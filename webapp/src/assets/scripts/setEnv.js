@@ -53,6 +53,7 @@ const environmentFileContent = `
     lendContractAddress: '${process.env.lendContractAddress}',
     stakeContractAddress: '${process.env.stakeContractAddress}',
     rupyaContractAddress: '${process.env.rupyaContractAddress}',
+    lendBorrowContractAddress: '${process.env.lendBorrowContractAddress}',
   };
 `;
 

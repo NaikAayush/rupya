@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ContractInterface, ethers, utils } from 'ethers';
+import { BigNumber, ContractInterface, ethers, utils } from 'ethers';
 declare let window: any;
 
 @Injectable({
@@ -28,5 +28,19 @@ export class EthersService {
   async initProviderContract(contractAddress: string, abi: ContractInterface) {
     await this.initEthers();
     return new ethers.Contract(contractAddress, abi, this.provider);
+  }
+
+  async decodeData(typesArray: Array<string>, raw_log_data: string) {
+    const abiCoder = new utils.AbiCoder();
+    const decodedParameters = abiCoder.decode(typesArray, raw_log_data);
+    return decodedParameters;
+  }
+
+  toWei(amount: string) {
+    return this.utils.parseEther(amount).toString();
+  }
+
+  fromWei(amount: BigNumber) {
+    return this.utils.formatEther(amount).toString();
   }
 }

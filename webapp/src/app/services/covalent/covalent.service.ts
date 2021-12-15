@@ -24,4 +24,14 @@ export class CovalentService {
       .toPromise();
     return result.data.items[0];
   }
+  async getTopic() {
+    const result: any = await this.http
+      .get(
+        'https://api.covalenthq.com/v1/80001/events/topics/0x769845dbb156181faaf79058d46735251c58a1933bf7cc8e5fe7edfc3ae515ff/?quote-currency=USD&format=JSON&starting-block=22514105&ending-block=latest&key=ckey_docs'
+      )
+      .toPromise();
+    return result.data.items;
+  }
+  topicHash =
+    '0x769845dbb156181faaf79058d46735251c58a1933bf7cc8e5fe7edfc3ae515ff';
 }
