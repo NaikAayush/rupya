@@ -54,6 +54,46 @@ export class LendBorrowService {
     await tx.wait();
   }
 
+  async createBorrowRequest(
+    principal: number,
+    duration: number,
+    ipfsHash: string
+  ) {
+    await this.initContracts();
+    this.account = await this.ethersService.provider.send(
+      'eth_requestAccounts',
+      []
+    );
+    const tx = await this.lendBorrowContract.createBorrowRequest(
+      principal,
+      duration,
+      environment.usdcTokenAddress,
+      await this.getTotalAmount(principal, duration),
+      ipfsHash
+    );
+    await tx.wait();
+  }
+
+  async approveBorrowRequest(user: string, index: number) {
+    await this.initContracts();
+    this.account = await this.ethersService.provider.send(
+      'eth_requestAccounts',
+      []
+    );
+    const tx = await this.lendBorrowContract.approveBorrowRequest(user, index);
+    await tx.wait();
+  }
+
+  async getApprovalStatus(index: number) {
+    await this.initContracts();
+    this.account = await this.ethersService.provider.send(
+      'eth_requestAccounts',
+      []
+    );
+    return await this.lendBorrowContract.getApprovalStatus(index);
+    // await tx.wait();
+  }
+
   async getUSDCBal() {
     await this.initContracts();
     this.account = await this.ethersService.provider.send(
@@ -85,13 +125,14 @@ export class LendBorrowService {
 
   async getPoolValue() {
     await this.initContracts();
-    this.account = await this.ethersService.provider.send(
-      'eth_requestAccounts',
-      []
-    );
     this.usdcBal = this.ethersService.fromWei(
       await this.usdcContract.balanceOf(environment.lendBorrowContractAddress)
     );
     return Math.floor(this.usdcBal as unknown as number);
+  }
+
+  async getTotalAmount(principal: number, duration: number) {
+    const interest = 0.04;
+    return principal + (principal * duration * interest) / 100;
   }
 }

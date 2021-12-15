@@ -1,3 +1,4 @@
+<app-loader *ngIf="loading"></app-loader>
 <div class="flex flex-row w-screen h-screen bg-indigo-50 overflow-auto">
     <div class="sticky top-0 h-full p-4">
         <app-sidebar class="h-auto"></app-sidebar>
@@ -15,6 +16,15 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </button>
+                        <div class="min-w-full shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                            <table class="divide-y divide-gray-200">
+                                <tbody class="min-w-full">
+                                    <tr *ngFor="let item of data;">
+                                        <app-stake-loans-item [user]="item[0]" [idx]="item[1]" [ipfs]="item[2]"></app-stake-loans-item>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </main>
