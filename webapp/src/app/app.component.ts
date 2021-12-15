@@ -8,7 +8,7 @@ import { Web3Service } from './services/web3/web3.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'webapp';
+  title = 'app';
   isLoggedIn: boolean = false;
   constructor(public web3: Web3Service, private ipfs: IpfsService) {}
 

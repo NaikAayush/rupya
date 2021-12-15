@@ -15,6 +15,6 @@ RUN npm run build
 # Serve
 FROM nginx:latest
 
-COPY --from=build /usr/local/app/dist/webapp /usr/share/nginx/html
+COPY --from=build /usr/local/app/dist/app /usr/share/nginx/html
 
 EXPOSE 80
