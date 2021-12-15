@@ -49,6 +49,8 @@ const environmentFileContent = `
     rupyaAddress: '${process.env.rupyaAddress}',
     usdcAddress: '${process.env.usdcAddress}',
     url: '${process.env.url}',
+    rupx: '${process.env.rupx}',
+    usdcx: '${process.env.usdcx}',
   };
 `;
 

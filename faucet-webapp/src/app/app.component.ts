@@ -19,4 +19,10 @@ export class AppComponent {
   async addRupya() {
     await this.token.addToken('rupya');
   }
+  async addUSDCx() {
+    await this.token.addToken('usdcx');
+  }
+  async addRupyax() {
+    await this.token.addToken('rupyax');
+  }
 }
